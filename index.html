@@ -53,7 +53,7 @@
                     <label for="">First Class ($150)</label>
                     <input id="first-class-quantity" class="inp-style inp-width" type="number" value="0">
                 </div>
-                <div class="plus-minus-btn">
+                <div class="plus-minus-btn control">
                     <button onclick="handleSeat(true, 'first-class')">+</button>
                     <button onclick="handleSeat(false, 'first-class')">-</button>
                 </div>
@@ -64,7 +64,7 @@
                     <label for="">Economy ($100)</label>
                     <input id="economy-quantity" class="inp-style inp-width" type="number" value="0">
                 </div>
-                <div class="plus-minus-btn">
+                <div class="plus-minus-btn control">
                     <button onclick="handleSeat(true, 'economy')">+</button>
                     <button onclick="handleSeat(false, 'economy')">-</button>
                 </div>
@@ -97,7 +97,11 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+
+            <div>
+                <p id="message">You have successfully booked</p>
+                <button id="submit" onclick="successMessage()" class="btn-style">Book Now</button>
+            </div>
         </div>
 
         <div class="booking-content">
@@ -122,9 +126,8 @@
 
                 calculateTotal();
             }
-            
+
             function getInputValue(seat) {
-                console.log(seat);
                 const seatInput = document.getElementById(seat + '-quantity');
                 const seatCount = parseInt(seatInput.value);
                 return seatCount;
@@ -142,7 +145,18 @@
                 const grandTotal = totalPrice + tax;
                 document.getElementById('grand-total').innerText = '$' + grandTotal;
             }
-
+            
+            function successMessage() {
+                var grandTotal = document.getElementById('grand-total').innerText;
+                if (grandTotal !== '$0') {
+                    document.getElementById('submit').style.display = "none";
+                    document.getElementById('message').style.display = "block";
+                    var x = document.getElementsByClassName("control");
+                    for (var i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                }
+            }
         </script>
 </body>
 

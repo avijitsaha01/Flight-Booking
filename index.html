@@ -123,11 +123,18 @@
                 calculateTotal();
             }
             
+            function getInputValue(seat) {
+                console.log(seat);
+                const seatInput = document.getElementById(seat + '-quantity');
+                const seatCount = parseInt(seatInput.value);
+                return seatCount;
+            }
+
             function calculateTotal() {
                 const firstClassCount = getInputValue('first-class');
                 const economyCount = getInputValue('economy');
                 const totalPrice = firstClassCount * 150 + economyCount * 100;
-                document.getElementById('subtotal').innerText ='$' + totalPrice;
+                document.getElementById('subtotal').innerText = '$' + totalPrice;
 
                 const tax = Math.round(totalPrice * 0.1);
                 document.getElementById('tax-amount').innerText = '$' + tax;
@@ -136,12 +143,6 @@
                 document.getElementById('grand-total').innerText = '$' + grandTotal;
             }
 
-            function getInputValue(seat) {
-                console.log(seat);
-                const seatInput = document.getElementById(seat + '-quantity');
-                const seatCount = parseInt(seatInput.value);
-                return seatCount;
-            }
         </script>
 </body>
 
